@@ -14,11 +14,13 @@
     .Post-body,
     .PostUser-name,
     .PostUser-name a,
-    .Button-label,
     .Header-title,
     .Header-title a,
     .Hero-title,
     .DiscussionHero .DiscussionHero-title { color: #ffffff !important; }
+
+    // Button labels white — but NOT the Start a Discussion button
+    .Button-label:not(.IndexPage-nav .App-primaryControl .Button-label) { color: #ffffff !important; }
 
     // Muted text — bumped up
     .DiscussionListItem-info,
