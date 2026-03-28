@@ -171,3 +171,35 @@
         }
     }
 }
+
+// ── Toolbar buttons — Phone ───────────────────────────────────
+@media @phone {
+    .IndexPage-toolbar {
+        background: @term-surface;
+        border-bottom: 1px solid @term-border;
+        padding: 6px 12px;
+
+        .Button {
+            background: transparent;
+            border: 1px solid @term-border;
+            border-radius: @border-radius;
+            color: @term-text-mid;
+            font-family: 'DM Mono', monospace;
+            font-size: 11px;
+            padding: 2px 8px;
+            box-shadow: none;
+
+            &:hover {
+                border-color: @term-green-dim;
+                color: @term-text;
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+
+        .Dropdown-toggle.Button {
+            border-color: @term-green-dim;
+            color: @term-text;
+        }
+    }
+}

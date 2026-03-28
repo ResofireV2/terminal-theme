@@ -157,9 +157,10 @@
         }
     }
 
-    // Right slot — Start a Discussion icon button
-    // Green icon, transparent background
-    .App-primaryControl > .Button {
+    // Right slot — Start a Discussion icon button (NOT inside composer)
+    // Only target the top-bar primaryControl, not the composer submit button
+    .App-navigation .App-primaryControl > .Button,
+    .App-content > .App-primaryControl > .Button {
         color: @term-green !important;
         background: transparent !important;
         box-shadow: none !important;

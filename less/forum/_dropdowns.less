@@ -83,9 +83,9 @@
 // ── Phone drawer — dropdown and nav overrides ─────────────────
 
 @media @phone {
-    // Active nav item in drawer — readable green text, no bright background
-    .App-drawer .sideNav .Dropdown-menu > li.active > a,
-    .App-drawer .Dropdown--select .Dropdown-menu > li.active > a {
+    // Active nav item — readable green text on dim background
+    .sideNav .Dropdown-menu > li.active > a,
+    .Dropdown--select .Dropdown-menu > li.active > a {
         background: @term-green-dimmer !important;
         color: @term-green !important;
         font-weight: 500;
