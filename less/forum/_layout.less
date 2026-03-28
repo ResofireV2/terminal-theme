@@ -26,3 +26,20 @@
         background: @term-bg;
     }
 }
+
+// ── Sidebar + content widths — desktop only ───────────────────
+// Widen the sidebar from 190px to 260px, tighten the gap,
+// but only on the IndexPage (discussion list), not globally.
+
+@media @desktop-up {
+    .IndexPage {
+        --sidebar-width: 260px;
+        --gap: 30px;
+    }
+
+    // sideNav and its ul also have an explicit 190px — override both
+    .IndexPage .sideNav,
+    .IndexPage .sideNav > ul {
+        width: 260px;
+    }
+}
