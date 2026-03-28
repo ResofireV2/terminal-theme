@@ -7,6 +7,7 @@
     }
 
     // Nav items — core: .sideNav .Dropdown--select .Dropdown-menu > li > a
+    // Layout: [$ icon] on row 1, [label text] on row 2
     .sideNav .Dropdown--select .Dropdown-menu > li > a {
         font-family: 'DM Mono', monospace;
         font-size: 14px;
@@ -14,23 +15,40 @@
         padding: 8px 16px;
         border-radius: 0;
         letter-spacing: .02em;
-        display: flex;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto auto;
         align-items: center;
-        gap: 8px;
+        gap: 0 6px;
 
+        // $ prefix — col 1, spans both rows, centred
         &::before {
-            content: '$ ';
+            content: '$';
             color: @term-text-dim;
             font-family: 'DM Mono', monospace;
-            flex-shrink: 0;
+            font-size: 14px;
+            grid-column: 1;
+            grid-row: 1 / -1;
+            align-self: center;
         }
 
-        // Show icon, dim colour
+        // Icon — col 2, row 1
         .Button-icon {
-            display: inline-block;
+            display: block;
             font-size: 14px;
             color: @term-text-dim;
-            flex-shrink: 0;
+            grid-column: 2;
+            grid-row: 1;
+            line-height: 1.3;
+        }
+
+        // Label — col 2, row 2
+        .Button-label {
+            display: block;
+            grid-column: 2;
+            grid-row: 2;
+            line-height: 1.3;
+            color: inherit;
         }
 
         &:hover {
