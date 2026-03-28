@@ -190,9 +190,9 @@
         border-radius: @border-radius !important;
         box-shadow: none !important;
 
+        // Standard items (links and simple buttons) — add > prefix
         > li > a,
-        > li > button,
-        > li > span {
+        > li > button:not(.DetailedDropdownItem) {
             font-family: 'DM Mono', monospace !important;
             font-size: 13px !important;
             color: @term-text-mid !important;
@@ -212,6 +212,33 @@
             .Button-icon,
             .icon { color: inherit !important; }
             .Button-label { color: inherit !important; }
+        }
+
+        // DetailedDropdownItem (Not Following / Following / Ignoring etc)
+        // Has its own icon+label+description layout — no > prefix, just dark bg
+        > li > .DetailedDropdownItem {
+            font-family: 'DM Mono', monospace !important;
+            font-size: 13px !important;
+            color: @term-text-mid !important;
+            padding: 10px 14px !important;
+            background: transparent !important;
+            border: none !important;
+            width: 100%;
+            text-align: left;
+
+            &::before { content: none !important; }
+
+            &:hover {
+                background: @term-surface !important;
+                color: @term-text !important;
+            }
+
+            .Button-icon { color: @term-text-dim !important; }
+            .DetailedDropdownItem-description {
+                color: @term-text-dim !important;
+                font-family: 'DM Mono', monospace !important;
+                font-size: 11px !important;
+            }
         }
 
         .Dropdown-header {
