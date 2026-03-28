@@ -203,3 +203,17 @@
         }
     }
 }
+
+// ── Phone: info row stacked ───────────────────────────────────
+// Stack tag on its own line, reply info on the next line
+
+@media @phone {
+    .DiscussionListItem-info {
+        > li {
+            display: block;
+            margin-bottom: 2px;
+
+            &:last-child { margin-bottom: 0; }
+        }
+    }
+}
