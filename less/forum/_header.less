@@ -83,17 +83,21 @@
         border-radius: @border-radius !important;
         color: @term-bg !important;
         font-family: 'DM Mono', monospace !important;
-        font-size: 12px !important;
+        font-size: 11px !important;
         font-weight: 500 !important;
         width: 100%;
+        white-space: nowrap;
+        overflow: visible;
         box-shadow: none !important;
-        letter-spacing: .03em;
+        letter-spacing: .01em;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
 
         &:hover {
             background: mix(white, @term-green, 15%) !important;
             box-shadow: none !important;
         }
 
-        .Button-icon { color: @term-bg !important; }
+        .Button-icon { color: @term-bg !important; font-size: 11px !important; }
     }
 }
