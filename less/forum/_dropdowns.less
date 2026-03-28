@@ -177,3 +177,203 @@
         .term-tag-tile-count { display: none; }
     }
 }
+
+// ── Phone: all pop-out menus ──────────────────────────────────
+
+@media @phone {
+    // ── Global Dropdown-menu on phone ────────────────────────
+    // Covers: post controls, discussion controls, sort dropdown,
+    // reply/follow caret, PostMeta, any other .Dropdown-menu
+    .Dropdown-menu {
+        background: @term-raised !important;
+        border: 1px solid @term-border !important;
+        border-radius: @border-radius !important;
+        box-shadow: none !important;
+
+        > li > a,
+        > li > button,
+        > li > span {
+            font-family: 'DM Mono', monospace !important;
+            font-size: 13px !important;
+            color: @term-text-mid !important;
+            padding: 8px 14px !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 8px !important;
+
+            &::before { content: '> '; color: @term-text-dim; }
+
+            &:hover {
+                background: @term-surface !important;
+                color: @term-text !important;
+                &::before { color: @term-green-dim; }
+            }
+
+            .Button-icon,
+            .icon { color: inherit !important; }
+            .Button-label { color: inherit !important; }
+        }
+
+        .Dropdown-header {
+            font-family: 'DM Mono', monospace !important;
+            font-size: 10px !important;
+            color: @term-text-dim !important;
+            letter-spacing: .08em !important;
+            text-transform: uppercase !important;
+            padding: 6px 14px 2px !important;
+        }
+
+        .Dropdown-separator {
+            background: @term-border !important;
+            margin: 3px 0 !important;
+        }
+    }
+
+    // ── Post controls (.Post-controls) ───────────────────────
+    .Post-controls .Dropdown-menu {
+        background: @term-raised !important;
+        border-color: @term-border !important;
+    }
+
+    // ── PostMeta dropdown (.Dropdown-menu.dropdown-menu) ─────
+    .PostMeta .Dropdown-menu,
+    .Dropdown-menu.dropdown-menu {
+        background: @term-raised !important;
+        border: 1px solid @term-border !important;
+        border-radius: @border-radius !important;
+        box-shadow: none !important;
+        color: @term-text !important;
+        font-family: 'DM Mono', monospace !important;
+        font-size: 12px !important;
+        padding: 10px 14px !important;
+
+        a { color: @term-green-dim !important; }
+    }
+
+    // ── Reply/Follow caret dropdown ───────────────────────────
+    .DiscussionPage-nav .Dropdown-menu {
+        background: @term-raised !important;
+        border-color: @term-border !important;
+    }
+
+    // ── AvatarEditor menu (.Dropdown-menu.Menu) ───────────────
+    .AvatarEditor .Dropdown-menu.Menu {
+        background: @term-raised !important;
+        border: 1px solid @term-border !important;
+        border-radius: @border-radius !important;
+        box-shadow: none !important;
+
+        > li > a,
+        > li > button {
+            font-family: 'DM Mono', monospace !important;
+            font-size: 13px !important;
+            color: @term-text-mid !important;
+            &:hover { background: @term-surface !important; color: @term-text !important; }
+        }
+    }
+}
+
+// ── Search modal — all breakpoints ───────────────────────────
+// SearchModal uses .Modal--flat so our existing .Modal rules apply,
+// but the search-specific elements need explicit terminal styling.
+
+.SearchModal {
+    // Input
+    .SearchModal-input.FormControl {
+        background: @term-raised !important;
+        border: 1px solid @term-border !important;
+        border-radius: @border-radius !important;
+        color: @term-green !important;
+        font-family: 'DM Mono', monospace !important;
+        font-size: 13px !important;
+        height: 42px !important;
+        caret-color: @term-green;
+
+        &::placeholder { color: @term-text-dim !important; }
+        &:focus {
+            border-color: @term-green-dim !important;
+            box-shadow: none !important;
+        }
+    }
+
+    // Tabs (All / Discussions / Users / Posts)
+    .Tabs-nav .Button {
+        font-family: 'DM Mono', monospace;
+        font-size: 11px;
+        color: @term-text-dim;
+        border-bottom: 1px solid transparent;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+        padding: 6px 12px;
+
+        &.active, &[aria-pressed="true"] {
+            color: @term-green;
+            border-bottom-color: @term-green;
+        }
+
+        &:hover { color: @term-text-mid; background: transparent; }
+    }
+
+    // Dropdown-header labels ("Options", "Results" etc)
+    .Dropdown-header {
+        font-family: 'DM Mono', monospace;
+        font-size: 10px;
+        color: @term-text-dim;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+    }
+
+    // Search result items
+    .Dropdown-menu {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    // Discussion search results
+    .DiscussionSearchResult .DiscussionListItem {
+        background: @term-surface;
+        border-bottom: 1px solid @term-border;
+
+        .DiscussionListItem-title {
+            font-family: 'DM Mono', monospace;
+            color: @term-text;
+        }
+
+        &.active, &:hover {
+            background: @term-raised;
+        }
+    }
+
+    // User search results
+    .UserSearchResult {
+        border-bottom: 1px solid @term-border;
+
+        .username { font-family: 'DM Mono', monospace; color: @term-text; }
+
+        &:hover > a { background: @term-raised; }
+    }
+
+    // "Show all results" / gambit links
+    .SearchModal-fullPage .Button,
+    .SearchModal-options .Button {
+        font-family: 'DM Mono', monospace;
+        font-size: 12px;
+        color: @term-text-mid;
+        background: transparent;
+        box-shadow: none;
+
+        &:hover { color: @term-text; background: transparent; }
+        &.active { color: @term-green; }
+    }
+
+    // Dividers
+    .Modal-divider { border-color: @term-border; }
+
+    // Modal-body background override for SearchModal
+    .Modal-body.SearchModal-body {
+        background: @term-surface !important;
+        color: @term-text;
+    }
+}
