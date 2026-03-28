@@ -5,38 +5,32 @@
         background: @term-surface;
         border-bottom: 1px solid @term-border;
 
-        .container {
-            padding-top: 24px;
-            padding-bottom: 20px;
-        }
+        .container { padding-top: 24px; padding-bottom: 20px; }
     }
 
-    // WelcomeHero renders <h1 className="Hero-title"> not bare h1
     .Hero-title {
         font-family: 'DM Mono', monospace;
-        font-size: 14px;
+        font-size: 15px;
         font-weight: 400;
         color: @term-green;
-        letter-spacing: .06em;
+        letter-spacing: .04em;
 
         &::before { content: '## '; color: @term-green-dim; }
     }
 
     .Hero-subtitle {
         font-family: 'DM Mono', monospace;
-        font-size: 11px;
-        color: @term-green-dim;
+        font-size: 12px;
+        color: @term-text-mid;
         letter-spacing: .02em;
         margin-top: 6px;
 
         &::before { content: '// '; color: @term-text-dim; }
     }
 
-    // Hero-close is a Button--icon Button--link
     .Hero-close {
         color: @term-text-dim;
         opacity: 1;
-
-        &:hover { color: @term-green; }
+        &:hover { color: @term-text; }
     }
 }

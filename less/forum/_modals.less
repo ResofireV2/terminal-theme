@@ -1,9 +1,7 @@
 // ── Modals — Desktop only ─────────────────────────────────────
 
 @media @tablet-up {
-    .Modal-backdrop {
-        background: rgba(0,0,0,.88);
-    }
+    .Modal-backdrop { background: rgba(0,0,0,.88); }
 
     .Modal {
         border-radius: @border-radius;
@@ -24,7 +22,7 @@
 
         h3 {
             font-family: 'DM Mono', monospace;
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 400;
             color: @term-green;
             letter-spacing: .04em;
@@ -33,57 +31,51 @@
         }
     }
 
-    // Modal-close is a Button--icon Button--link
     .Modal-close {
         color: @term-text-dim;
-        &:hover { color: @term-green; }
+        &:hover { color: @term-text; }
     }
 
     .Modal-body {
         background: @term-surface;
         color: @term-text;
 
-        // .FormControl inside modal body
         .FormControl {
             background: @term-raised;
             border: 1px solid @term-border;
             border-radius: @border-radius;
-            color: @term-green;
+            color: @term-text;
             font-family: 'DM Mono', monospace;
-            font-size: 11px;
-            height: 30px;
+            font-size: 12px;
+            height: 32px;
 
             &:focus {
                 border-color: @term-green-dim;
                 background: @term-raised;
                 box-shadow: none;
-                color: @term-green;
+                color: @term-text;
             }
 
             &::placeholder { color: @term-text-dim; }
         }
 
-        // LogInModal uses aria-label not <label> for most fields
-        // but "Remember me" uses <label class="checkbox">
         label {
             font-family: 'DM Mono', monospace;
-            font-size: 10px;
-            color: @term-green-dim;
+            font-size: 11px;
+            color: @term-text-mid;
         }
 
-        // helpText paragraphs
         .helpText {
             font-family: 'DM Mono', monospace;
-            font-size: 10px;
+            font-size: 11px;
             color: @term-text-dim;
         }
 
-        // Form group labels injected by extensions may use .Form-group label
         .Form-group label {
             font-family: 'DM Mono', monospace;
-            font-size: 10px;
-            color: @term-green-dim;
-            letter-spacing: .04em;
+            font-size: 11px;
+            color: @term-text-mid;
+            letter-spacing: .03em;
 
             &::before { content: '// '; color: @term-text-dim; }
         }
@@ -100,9 +92,9 @@
             border-radius: @border-radius;
             color: @term-bg;
             font-family: 'DM Mono', monospace;
-            font-size: 11px;
+            font-size: 12px;
             font-weight: 500;
-            letter-spacing: .04em;
+            letter-spacing: .03em;
             box-shadow: none;
 
             &:hover {
@@ -113,10 +105,9 @@
 
         a, .Button--link, .Button--text {
             font-family: 'DM Mono', monospace;
-            font-size: 10px;
-            color: @term-green-dim;
-
-            &:hover { color: @term-green; }
+            font-size: 11px;
+            color: @term-text-dim;
+            &:hover { color: @term-text-mid; }
         }
     }
 }

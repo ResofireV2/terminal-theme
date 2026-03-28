@@ -1,24 +1,20 @@
 // ── Posts — Desktop only ──────────────────────────────────────
 
 @media @tablet-up {
-    .Post {
-        border-radius: 0;
-        background: @term-bg;
-    }
+    .Post { border-radius: 0; background: @term-bg; }
 
     .Post-header,
     .Post-header a,
     .Post-header .Button--text.Button--link {
         font-family: 'DM Mono', monospace;
-        color: @term-green-dim;
+        color: @term-text-mid;
     }
 
-    // PostUser-name a is the author link
     .PostUser-name,
     .PostUser-name a {
         color: @term-green !important;
         font-family: 'DM Mono', monospace;
-        font-size: 12px;
+        font-size: 13px;
     }
 
     .Post-body {
@@ -29,7 +25,7 @@
 
         a {
             color: @term-green-dim;
-            border-bottom: 1px solid @term-green-dimmer;
+            border-bottom: 1px solid @term-border;
             text-decoration: none;
 
             &:hover {
@@ -59,19 +55,12 @@
             background: @term-raised;
             border-radius: @border-radius;
 
-            code {
-                background: transparent;
-                color: @term-green;
-            }
+            code { background: transparent; color: @term-green; }
         }
     }
 
-    // Divider line between posts
-    .PostStream-item::after {
-        background: @term-border !important;
-    }
+    .PostStream-item::after { background: @term-border !important; }
 
-    // Reply placeholder
     .ReplyPlaceholder {
         border-color: @term-border;
         border-radius: @border-radius;
@@ -83,7 +72,6 @@
         &:hover { border-color: @term-green-dim; }
     }
 
-    // Post footer/action buttons
     .Post-footer,
     .Post-actions {
         &, a, .Button--text.Button--link {
@@ -91,26 +79,13 @@
             font-family: 'DM Mono', monospace;
             font-size: 11px;
         }
-        a:hover { color: @term-green; }
+        a:hover { color: @term-text-mid; }
     }
 
-    // Scrubber — the thin scrollbar on the discussion page
     .Scrubber-before,
-    .Scrubber-after {
-        border-left-color: @term-border;
-    }
+    .Scrubber-after { border-left-color: @term-border; }
 
-    // .Scrubber-bar is the draggable handle indicator
-    .Scrubber-bar {
-        background: @term-green;
-        border-radius: 0;
-    }
-
-    .Scrubber-handle {
-        cursor: move;
-    }
-
-    .Scrubber-unread {
-        border-left-color: @term-green-dim;
-    }
+    .Scrubber-bar { background: @term-green; border-radius: 0; }
+    .Scrubber-handle { cursor: move; }
+    .Scrubber-unread { border-left-color: @term-green-dim; }
 }
