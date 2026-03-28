@@ -2,7 +2,6 @@
     "name": "resofire/terminal",
     "description": "Terminal — a monospace dark theme for Flarum 2.x",
     "type": "flarum-extension",
-    "version": "0.1.0",
     "license": "MIT",
     "authors": [
         {
