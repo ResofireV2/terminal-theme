@@ -14,19 +14,30 @@
         padding: 8px 16px;
         border-radius: 0;
         letter-spacing: .02em;
+        display: flex;
+        align-items: center;
+        gap: 8px;
 
         &::before {
             content: '$ ';
             color: @term-text-dim;
             font-family: 'DM Mono', monospace;
+            flex-shrink: 0;
         }
 
-        .Button-icon { display: none; }
+        // Show icon, dim colour
+        .Button-icon {
+            display: inline-block;
+            font-size: 14px;
+            color: @term-text-dim;
+            flex-shrink: 0;
+        }
 
         &:hover {
             background: none;
             color: @term-text;
             &::before { color: @term-green-dim; }
+            .Button-icon { color: @term-text-mid; }
         }
     }
 
@@ -36,6 +47,7 @@
         color: @term-green;
         font-weight: 500;
         &::before { color: @term-green-dim; }
+        .Button-icon { color: @term-green-dim; }
     }
 
     // ── Tag tiles ────────────────────────────────────────────
@@ -115,52 +127,64 @@
 }
 
 // ── Tablet: horizontal nav ───────────────────────────────────
-// Layout: [>] [column: icon / label] — separator left, icon+text stacked right
+// Layout per item: [>] | [icon above label] using CSS grid
+// ::before = col 1 row 1/-1, .Button-icon = col 2 row 1, .Button-label = col 2 row 2
 
 @media @tablet {
-    // Core nav links
+    // Core nav links — grid layout for > | stacked icon+label
     .sideNav .Dropdown--select .Dropdown-menu > li > a {
-        display: inline-flex;
-        flex-direction: row;
-        align-items: flex-start;
+        display: inline-grid;
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto auto;
+        align-items: start;
+        justify-items: center;
         padding: 0;
-        gap: 6px;
+        gap: 0 4px;
         text-align: center;
 
-        // > to the left of everything
+        // > in col 1, spans both rows
         &::before {
             content: '>';
             color: @term-text-dim;
             font-family: 'DM Mono', monospace;
             font-size: 13px;
             line-height: 1.2;
-            flex-shrink: 0;
+            grid-column: 1;
+            grid-row: 1 / -1;
+            align-self: center;
         }
 
-        // Icon and label stack vertically
+        // Icon in col 2, row 1
         .Button-icon {
             display: block;
             font-size: 16px;
             line-height: 1.2;
+            grid-column: 2;
+            grid-row: 1;
         }
 
+        // Label in col 2, row 2
         .Button-label {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            display: block;
+            grid-column: 2;
+            grid-row: 2;
+            font-size: 12px;
+            line-height: 1.3;
         }
     }
 
-    // Tag tiles — same layout
+    // Tag tiles — same grid layout, > | stacked icon+label
     .term-tag-grid { display: inline; }
 
     .term-tag-tile {
-        display: inline-flex;
-        flex-direction: row;
-        align-items: flex-start;
+        display: inline-grid;
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto auto;
+        align-items: start;
+        justify-items: center;
         vertical-align: top;
         margin: 0 20px 0 0;
-        gap: 6px;
+        gap: 0 4px;
         text-align: center;
 
         background: none;
@@ -170,38 +194,43 @@
         overflow: visible;
         min-height: 0;
 
-        // > to the left
+        // > in col 1, spans both rows
         &::before {
             content: '>';
             color: @term-text-dim;
             font-family: 'DM Mono', monospace;
             font-size: 13px;
             line-height: 1.2;
-            flex-shrink: 0;
+            grid-column: 1;
+            grid-row: 1 / -1;
+            align-self: center;
         }
 
-        // Icon on top, coloured by tag colour
+        // Icon in col 2, row 1
         .term-tag-tile-icon {
             display: block;
             position: static;
             font-size: 16px;
+            line-height: 1.2;
             opacity: 1;
             color: var(--tile-color, @term-text-mid);
-            width: auto;
-            height: auto;
-            top: auto;
-            right: auto;
-            line-height: 1.2;
+            width: auto; height: auto;
+            top: auto; right: auto;
+            grid-column: 2;
+            grid-row: 1;
         }
 
-        // Name below icon, coloured by tag colour, no extra prefix
+        // Name in col 2, row 2
         .term-tag-tile-name {
             font-family: 'DM Mono', monospace;
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 400;
             color: var(--tile-color, @term-text-mid);
             margin-top: 0;
             display: block;
+            line-height: 1.3;
+            grid-column: 2;
+            grid-row: 2;
 
             &::before { content: none; }
         }
