@@ -217,3 +217,54 @@
         }
     }
 }
+
+// ── Load More button ──────────────────────────────────────────
+@media @tablet-up {
+    .DiscussionList-loadMore {
+        padding: 16px;
+        text-align: center;
+
+        .Button {
+            background: transparent;
+            border: 1px solid @term-border;
+            border-radius: @border-radius;
+            color: @term-text-mid;
+            font-family: 'DM Mono', monospace;
+            font-size: 12px;
+            box-shadow: none;
+            padding: 6px 20px;
+
+            &:hover {
+                border-color: @term-green-dim;
+                color: @term-text;
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    }
+}
+
+@media @phone {
+    .DiscussionList-loadMore {
+        padding: 16px;
+        text-align: center;
+
+        .Button {
+            background: transparent;
+            border: 1px solid @term-border;
+            border-radius: @border-radius;
+            color: @term-text-mid;
+            font-family: 'DM Mono', monospace;
+            font-size: 12px;
+            box-shadow: none;
+            width: 100%;
+
+            &:hover {
+                border-color: @term-green-dim;
+                color: @term-text;
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    }
+}
