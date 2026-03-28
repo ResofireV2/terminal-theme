@@ -9,12 +9,12 @@ export const extenders = [];
 app.initializers.add('resofire-terminal', () => {
 
     // ── Discussion list: tag-colour accent stripe ─────────────
-    // Sets --aurora-tag-color on each row so the LESS ::before stripe works
+    // Sets --term-tag-color on each row so the LESS ::before stripe works
     extend(DiscussionListItem.prototype, 'elementAttrs', function (attrs) {
         const tags = this.attrs.discussion.tags?.();
         const color = tags && tags.length ? tags[0].color() : null;
         if (!attrs.style) attrs.style = {};
-        attrs.style['--aurora-tag-color'] = color || 'var(--primary-color)';
+        attrs.style['--term-tag-color'] = color || 'var(--primary-color)';
     });
 
     // ── Sidebar: replace flat tag list with coloured tiles ────
@@ -45,23 +45,23 @@ app.initializers.add('resofire-terminal', () => {
             return (
                 <a
                     href={app.route('tag', { ...params, tags: tag.slug() })}
-                    className={'aurora-tag-tile' + (isActive ? ' active' : '')}
+                    className={'term-tag-tile' + (isActive ? ' active' : '')}
                     style={{ '--tile-color': color }}
                     onclick={(e) => {
                         e.preventDefault();
                         m.route.set(app.route('tag', { ...params, tags: tag.slug() }));
                     }}
                 >
-                    {icon && <i className={'aurora-tag-tile-icon ' + icon} />}
-                    <span className="aurora-tag-tile-name">{tag.name()}</span>
-                    <span className="aurora-tag-tile-count">{tag.discussionCount()}</span>
+                    {icon && <i className={'term-tag-tile-icon ' + icon} />}
+                    <span className="term-tag-tile-name">{tag.name()}</span>
+                    <span className="term-tag-tile-count">{tag.discussionCount()}</span>
                 </a>
             );
         });
 
         items.add(
             'tagTiles',
-            <div className="aurora-tag-grid">{tiles}</div>,
+            <div className="term-tag-grid">{tiles}</div>,
             -14
         );
     });

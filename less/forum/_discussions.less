@@ -3,7 +3,7 @@
 @media @tablet-up {
     // Hide the mobile tag strip on desktop — it was injected by IndexPage.contentItems
     // but we've removed it from JS entirely so this is just a safety fallback
-    .aurora-tag-strip { display: none; }
+    .term-tag-strip { display: none; }
 
     .IndexPage-toolbar {
         background: @term-surface;
@@ -52,7 +52,7 @@
             position: absolute;
             left: 0; top: 0; bottom: 0;
             width: 2px;
-            background: var(--aurora-tag-color, @term-green-dim);
+            background: var(--term-tag-color, @term-green-dim);
         }
 
         &:hover {

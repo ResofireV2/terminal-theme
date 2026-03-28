@@ -39,14 +39,14 @@
     }
 
     // ── Tag tiles ────────────────────────────────────────────
-    .aurora-tag-grid {
+    .term-tag-grid {
         display: grid;
         grid-template-columns: 1fr;
         gap: 4px;
         padding: 8px 12px 12px;
     }
 
-    .aurora-tag-tile {
+    .term-tag-tile {
         border-radius: @border-radius;
         padding: 9px 9px 7px;
         cursor: pointer;
@@ -79,7 +79,7 @@
         }
     }
 
-    .aurora-tag-tile-icon {
+    .term-tag-tile-icon {
         position: absolute;
         top: 8px;
         right: 8px;
@@ -88,7 +88,7 @@
         color: var(--tile-color, @term-green);
     }
 
-    .aurora-tag-tile-name {
+    .term-tag-tile-name {
         font-family: 'DM Mono', monospace;
         font-size: 13px;
         font-weight: 500;
@@ -97,7 +97,7 @@
         margin-top: 4px;
     }
 
-    .aurora-tag-tile-count {
+    .term-tag-tile-count {
         font-family: 'DM Mono', monospace;
         font-size: 11px;
         color: @term-text-dim;
@@ -109,44 +109,63 @@
 // Our tile grid makes no sense in that layout — hide it entirely.
 // The Tags page has its own full tag grid in the content area anyway.
 @media @desktop-up {
-    .Page--vertical .aurora-tag-grid {
+    .Page--vertical .term-tag-grid {
         display: none;
     }
 }
 
-// ── Tablet: horizontal nav — tag tiles become plain nav items ──
-// At @tablet, sideNav becomes horizontal. The aurora-tag-grid sits
-// as a single li which breaks. We reset it to flow inline like the
-// other nav links.
+// ── Tablet: horizontal nav — tag tiles match other nav links exactly ──
+// sideNav--horizontal makes each navItem li inline-block.
+// Our term-tag-grid is one li containing multiple tiles — we unwrap it
+// so each tile looks identical to Leaderboard, Following, Tags etc.
 
 @media @tablet {
-    // Remove the grid layout — let tiles flow inline
-    .aurora-tag-grid {
+    // Unwrap the grid — make it a transparent inline container
+    .term-tag-grid {
         display: inline;
     }
 
-    .aurora-tag-tile {
-        // Match the inline-block li behaviour of the horizontal nav
-        display: inline-block;
+    // Each tile becomes a horizontal flex link matching other nav <li> > <a> items
+    .term-tag-tile {
+        // Matches inline-block li in sideNav--horizontal
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
         vertical-align: top;
         margin: 0 20px 0 0;
 
-        // Reset tile card styles
+        // Reset all tile card styles
         background: none;
         border: none;
         border-radius: 0;
-        padding: 0;
+        padding: 8px 0 8px 0;
         overflow: visible;
+        flex-direction: row;
+        min-height: 0;
 
-        // Remove the coloured top bar pseudo
+        // Remove the coloured top bar
         &::before { display: none; }
 
-        // Name styled like a nav link
-        .aurora-tag-tile-name {
+        // Icon — matches .Button-icon sizing in nav links
+        .term-tag-tile-icon {
+            display: inline-block;
+            position: static;
+            font-size: 15px;
+            opacity: 1;
+            color: @term-text-mid;
+            width: auto;
+            height: auto;
+            top: auto;
+            right: auto;
+        }
+
+        // Name — matches .Button-label in nav links, with $ prefix
+        .term-tag-tile-name {
             font-family: 'DM Mono', monospace;
             font-size: 14px;
-            color: @term-text-mid;
             font-weight: 400;
+            color: @term-text-mid;
+            margin-top: 0;
 
             &::before {
                 content: '$ ';
@@ -154,18 +173,19 @@
             }
         }
 
-        // Hide the count — no room in horizontal strip
-        .aurora-tag-tile-count { display: none; }
-        .aurora-tag-tile-icon  { display: none; }
+        // No room for count in horizontal strip
+        .term-tag-tile-count { display: none; }
 
-        &:hover .aurora-tag-tile-name {
-            color: @term-text;
-            &::before { color: @term-green-dim; }
+        &:hover {
+            .term-tag-tile-name { color: @term-text; }
+            .term-tag-tile-name::before { color: @term-green-dim; }
+            .term-tag-tile-icon { color: @term-text; }
         }
 
-        &.active .aurora-tag-tile-name {
-            color: @term-green;
-            &::before { color: @term-green-dim; }
+        &.active {
+            .term-tag-tile-name { color: @term-green; }
+            .term-tag-tile-name::before { color: @term-green-dim; }
+            .term-tag-tile-icon { color: @term-green; }
         }
     }
 }
