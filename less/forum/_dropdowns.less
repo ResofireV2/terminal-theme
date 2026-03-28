@@ -181,16 +181,16 @@
 // ── Phone: all pop-out menus ──────────────────────────────────
 
 @media @phone {
-    // ── Global Dropdown-menu on phone ────────────────────────
-    // Covers: post controls, discussion controls, sort dropdown,
-    // reply/follow caret, PostMeta, any other .Dropdown-menu
+    // ── Global Dropdown-menu ─────────────────────────────────
+    // One solid background everywhere. No hover background shift —
+    // only text colour changes on hover.
     .Dropdown-menu {
         background: @term-raised !important;
         border: 1px solid @term-border !important;
         border-radius: @border-radius !important;
         box-shadow: none !important;
 
-        // Standard items (links and simple buttons) — add > prefix
+        // Standard li > a and simple buttons
         > li > a,
         > li > button:not(.DetailedDropdownItem) {
             font-family: 'DM Mono', monospace !important;
@@ -200,13 +200,14 @@
             display: flex !important;
             align-items: center !important;
             gap: 8px !important;
+            background: transparent !important;
 
             &::before { content: '> '; color: @term-text-dim; }
 
             &:hover {
-                background: @term-surface !important;
-                color: @term-text !important;
-                &::before { color: @term-green-dim; }
+                background: transparent !important;
+                color: @term-green !important;
+                &::before { color: @term-green-dim !important; }
             }
 
             .Button-icon,
@@ -214,8 +215,8 @@
             .Button-label { color: inherit !important; }
         }
 
-        // DetailedDropdownItem (Not Following / Following / Ignoring etc)
-        // Has its own icon+label+description layout — no > prefix, just dark bg
+        // DetailedDropdownItem — icon + label + description layout
+        // No > prefix. Icons must be visible.
         > li > .DetailedDropdownItem {
             font-family: 'DM Mono', monospace !important;
             font-size: 13px !important;
@@ -229,11 +230,17 @@
             &::before { content: none !important; }
 
             &:hover {
-                background: @term-surface !important;
-                color: @term-text !important;
+                background: transparent !important;
+                color: @term-green !important;
             }
 
-            .Button-icon { color: @term-text-dim !important; }
+            // Both Button-icon elements — check mark and content icon
+            .Button-icon {
+                color: @term-text-mid !important;
+                font-size: 14px !important;
+                display: inline-block !important;
+            }
+
             .DetailedDropdownItem-description {
                 color: @term-text-dim !important;
                 font-family: 'DM Mono', monospace !important;
@@ -256,13 +263,58 @@
         }
     }
 
-    // ── Post controls (.Post-controls) ───────────────────────
-    .Post-controls .Dropdown-menu {
-        background: @term-raised !important;
-        border-color: @term-border !important;
+    // ── Active nav item — no bright bg, just green text ──────
+    .sideNav .Dropdown-menu > li.active > a,
+    .Dropdown--select .Dropdown-menu > li.active > a {
+        background: transparent !important;
+        color: @term-green !important;
+        font-weight: 500;
     }
 
-    // ── PostMeta dropdown (.Dropdown-menu.dropdown-menu) ─────
+    // ── Nav links in drawer/sidebar on phone ──────────────────
+    .sideNav .Dropdown-menu > li > a,
+    .Dropdown--select .Dropdown-menu > li > a {
+        font-family: 'DM Mono', monospace;
+        font-size: 14px;
+        color: @term-text-mid;
+        padding: 10px 16px;
+        background: transparent !important;
+
+        .Button-icon { color: @term-text-dim; font-size: 16px; }
+
+        &:hover {
+            background: transparent !important;
+            color: @term-green !important;
+        }
+    }
+
+    // ── Session dropdown ──────────────────────────────────────
+    .SessionDropdown .Dropdown-menu {
+        background: @term-raised !important;
+        border: 1px solid @term-border !important;
+        border-radius: @border-radius !important;
+        box-shadow: none !important;
+
+        > li > a,
+        > li > button {
+            font-family: 'DM Mono', monospace !important;
+            font-size: 13px !important;
+            color: @term-text-mid !important;
+            background: transparent !important;
+            padding: 8px 16px !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 10px !important;
+
+            &::before { content: '> '; color: @term-text-dim; }
+            &:hover { background: transparent !important; color: @term-green !important; }
+
+            .Button-icon { color: inherit !important; }
+            .Button-label { color: inherit !important; }
+        }
+    }
+
+    // ── PostMeta dropdown (.dropdown-menu Bootstrap class) ────
     .PostMeta .Dropdown-menu,
     .Dropdown-menu.dropdown-menu {
         background: @term-raised !important;
@@ -277,12 +329,6 @@
         a { color: @term-green-dim !important; }
     }
 
-    // ── Reply/Follow caret dropdown ───────────────────────────
-    .DiscussionPage-nav .Dropdown-menu {
-        background: @term-raised !important;
-        border-color: @term-border !important;
-    }
-
     // ── AvatarEditor menu (.Dropdown-menu.Menu) ───────────────
     .AvatarEditor .Dropdown-menu.Menu {
         background: @term-raised !important;
@@ -295,8 +341,52 @@
             font-family: 'DM Mono', monospace !important;
             font-size: 13px !important;
             color: @term-text-mid !important;
-            &:hover { background: @term-surface !important; color: @term-text !important; }
+            background: transparent !important;
+            &:hover { background: transparent !important; color: @term-green !important; }
         }
+    }
+
+    // ── Tag tiles in sidebar on phone ─────────────────────────
+    .term-tag-grid {
+        display: block;
+        padding: 4px 0;
+    }
+
+    .term-tag-tile {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 16px;
+        background: none;
+        border: none;
+        border-radius: 0;
+        overflow: visible;
+        min-height: 0;
+        text-decoration: none;
+
+        &::before { display: none; }
+
+        .term-tag-tile-icon {
+            display: inline-block;
+            position: static;
+            font-size: 16px;
+            color: var(--tile-color, @term-text-mid);
+            width: auto; height: auto;
+            top: auto; right: auto;
+            opacity: 1;
+        }
+
+        .term-tag-tile-name {
+            font-family: 'DM Mono', monospace;
+            font-size: 14px;
+            color: var(--tile-color, @term-text-mid);
+            margin-top: 0;
+            display: block;
+            &::before { content: none; }
+        }
+
+        .term-tag-tile-count { display: none; }
     }
 }
 
