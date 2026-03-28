@@ -115,54 +115,54 @@
 }
 
 // ── Tablet: horizontal nav ───────────────────────────────────
-// Each nav item: icon stacked above ">" separator above label text.
-// Tags match exactly, coloured by their tag colour.
+// Layout: [>] [column: icon / label] — separator left, icon+text stacked right
 
 @media @tablet {
-    // Core nav links: flex-column so icon sits above text.
-    // Restore icon. Use > as separator between icon and label.
+    // Core nav links
     .sideNav .Dropdown--select .Dropdown-menu > li > a {
         display: inline-flex;
-        flex-direction: column;
-        align-items: center;
+        flex-direction: row;
+        align-items: flex-start;
         padding: 0;
-        gap: 2px;
+        gap: 6px;
         text-align: center;
 
-        // Show the icon again (we hid it on desktop)
+        // > to the left of everything
+        &::before {
+            content: '>';
+            color: @term-text-dim;
+            font-family: 'DM Mono', monospace;
+            font-size: 13px;
+            line-height: 1.2;
+            flex-shrink: 0;
+        }
+
+        // Icon and label stack vertically
         .Button-icon {
             display: block;
             font-size: 16px;
+            line-height: 1.2;
         }
 
-        // > separator between icon and label text
-        .Button-label::before {
-            content: '>';
-            display: block;
-            font-size: 10px;
-            color: @term-text-dim;
-            line-height: 1;
-            margin-bottom: 1px;
-            font-family: 'DM Mono', monospace;
+        .Button-label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-
-        // Remove our desktop $ prefix
-        &::before { content: none; }
     }
 
-    // Tag tiles: same column layout, coloured by tag colour
+    // Tag tiles — same layout
     .term-tag-grid { display: inline; }
 
     .term-tag-tile {
         display: inline-flex;
-        flex-direction: column;
-        align-items: center;
+        flex-direction: row;
+        align-items: flex-start;
         vertical-align: top;
         margin: 0 20px 0 0;
-        gap: 2px;
+        gap: 6px;
         text-align: center;
 
-        // Reset tile card styles
         background: none;
         border: none;
         border-radius: 0;
@@ -170,8 +170,15 @@
         overflow: visible;
         min-height: 0;
 
-        // Remove coloured top bar
-        &::before { display: none; }
+        // > to the left
+        &::before {
+            content: '>';
+            color: @term-text-dim;
+            font-family: 'DM Mono', monospace;
+            font-size: 13px;
+            line-height: 1.2;
+            flex-shrink: 0;
+        }
 
         // Icon on top, coloured by tag colour
         .term-tag-tile-icon {
@@ -184,21 +191,10 @@
             height: auto;
             top: auto;
             right: auto;
-            line-height: 1;
+            line-height: 1.2;
         }
 
-        // > separator
-        .term-tag-tile-name::before {
-            content: '>';
-            display: block;
-            font-size: 10px;
-            color: @term-text-dim;
-            line-height: 1;
-            margin-bottom: 1px;
-            font-family: 'DM Mono', monospace;
-        }
-
-        // Tag name coloured by tag colour
+        // Name below icon, coloured by tag colour, no extra prefix
         .term-tag-tile-name {
             font-family: 'DM Mono', monospace;
             font-size: 14px;
@@ -206,6 +202,8 @@
             color: var(--tile-color, @term-text-mid);
             margin-top: 0;
             display: block;
+
+            &::before { content: none; }
         }
 
         .term-tag-tile-count { display: none; }
@@ -215,9 +213,7 @@
             .term-tag-tile-icon { opacity: .75; }
         }
 
-        &.active {
-            .term-tag-tile-name { font-weight: 700; }
-        }
+        &.active .term-tag-tile-name { font-weight: 700; }
     }
 }
 
