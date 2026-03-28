@@ -79,3 +79,101 @@
         color: @term-text-mid;
     }
 }
+
+// ── Phone drawer — dropdown and nav overrides ─────────────────
+
+@media @phone {
+    // Active nav item in drawer — readable green text, no bright background
+    .App-drawer .sideNav .Dropdown-menu > li.active > a,
+    .App-drawer .Dropdown--select .Dropdown-menu > li.active > a {
+        background: @term-green-dimmer !important;
+        color: @term-green !important;
+        font-weight: 500;
+    }
+
+    // All nav links in drawer
+    .App-drawer .sideNav .Dropdown-menu > li > a,
+    .App-drawer .Dropdown--select .Dropdown-menu > li > a {
+        font-family: 'DM Mono', monospace;
+        font-size: 14px;
+        color: @term-text-mid;
+        padding: 10px 16px;
+
+        .Button-icon { color: @term-text-dim; font-size: 16px; }
+
+        &:hover {
+            background: @term-raised !important;
+            color: @term-text !important;
+        }
+    }
+
+    // Session dropdown menu when open inside drawer
+    .App-drawer .SessionDropdown .Dropdown-menu,
+    .SessionDropdown .Dropdown-menu {
+        background: @term-raised;
+        border: 1px solid @term-border;
+        border-radius: @border-radius;
+        box-shadow: none;
+
+        > li > a,
+        > li > button {
+            font-family: 'DM Mono', monospace;
+            font-size: 13px;
+            color: @term-text-mid;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            &::before { content: '> '; color: @term-text-dim; }
+
+            &:hover {
+                background: @term-surface;
+                color: @term-text;
+                &::before { color: @term-green-dim; }
+            }
+
+            .Button-icon { color: inherit; font-size: 14px; }
+            .Button-label { color: inherit; }
+        }
+    }
+
+    // Tag tiles in drawer — plain text links, coloured
+    .App-drawer .term-tag-grid {
+        display: block;
+        padding: 0;
+    }
+
+    .App-drawer .term-tag-tile {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 16px;
+        background: none;
+        border: none;
+        border-radius: 0;
+        overflow: visible;
+
+        &::before { display: none; }
+
+        .term-tag-tile-icon {
+            display: inline-block;
+            position: static;
+            font-size: 16px;
+            color: var(--tile-color, @term-text-mid);
+            width: auto; height: auto; top: auto; right: auto;
+        }
+
+        .term-tag-tile-name {
+            font-family: 'DM Mono', monospace;
+            font-size: 14px;
+            color: var(--tile-color, @term-text-mid);
+            margin-top: 0;
+            display: block;
+            &::before { content: none; }
+        }
+
+        .term-tag-tile-count { display: none; }
+    }
+}

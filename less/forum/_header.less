@@ -73,9 +73,10 @@
         font-family: 'DM Mono', monospace;
         font-size: 10px;
     }
+}
 
-    // Start a Discussion button — default position in sidebar (App-primaryControl)
-    // Core wraps it in .App-primaryControl li and renders Button--primary
+// Start a Discussion button — desktop sidebar only (not mobile drawer)
+@media @desktop-up {
     .IndexPage-nav .App-primaryControl .Button--primary,
     .IndexPage-nav .IndexPage-newDiscussion {
         background: @term-green !important;

@@ -34,3 +34,39 @@
         &:hover { color: @term-text; }
     }
 }
+
+// ── Hero — Phone ──────────────────────────────────────────────
+
+@media @phone {
+    .Hero {
+        background: @term-surface;
+        border-bottom: 1px solid @term-border;
+
+        .container { padding-top: 16px; padding-bottom: 14px; }
+    }
+
+    .Hero-title {
+        font-family: 'DM Mono', monospace;
+        font-size: 14px;
+        font-weight: 400;
+        color: @term-green;
+        letter-spacing: .04em;
+
+        &::before { content: '## '; color: @term-green-dim; }
+    }
+
+    .Hero-subtitle {
+        font-family: 'DM Mono', monospace;
+        font-size: 12px;
+        color: @term-text-mid;
+        margin-top: 4px;
+
+        &::before { content: '// '; color: @term-text-dim; }
+    }
+
+    .Hero-close {
+        color: @term-text-dim;
+        opacity: 1;
+        &:hover { color: @term-text; }
+    }
+}
