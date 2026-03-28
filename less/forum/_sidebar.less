@@ -7,7 +7,7 @@
     }
 
     // Nav items — core: .sideNav .Dropdown--select .Dropdown-menu > li > a
-    // Layout: [$ icon] on row 1, [label text] on row 2
+    // Layout: row 1 = [$ | icon], row 2 = [  label  ] spanning both cols
     .sideNav .Dropdown--select .Dropdown-menu > li > a {
         font-family: 'DM Mono', monospace;
         font-size: 14px;
@@ -16,20 +16,21 @@
         border-radius: 0;
         letter-spacing: .02em;
         display: grid;
-        grid-template-columns: auto 1fr;
+        grid-template-columns: auto auto;
         grid-template-rows: auto auto;
+        justify-content: start;
         align-items: center;
         gap: 0 6px;
 
-        // $ prefix — col 1, spans both rows, centred
+        // $ — col 1, row 1
         &::before {
             content: '$';
             color: @term-text-dim;
             font-family: 'DM Mono', monospace;
             font-size: 14px;
             grid-column: 1;
-            grid-row: 1 / -1;
-            align-self: center;
+            grid-row: 1;
+            line-height: 1.3;
         }
 
         // Icon — col 2, row 1
@@ -42,12 +43,13 @@
             line-height: 1.3;
         }
 
-        // Label — col 2, row 2
+        // Label — spans both cols, row 2
         .Button-label {
             display: block;
-            grid-column: 2;
+            grid-column: 1 / -1;
             grid-row: 2;
-            line-height: 1.3;
+            padding-left: 2px;
+            line-height: 1.4;
             color: inherit;
         }
 
