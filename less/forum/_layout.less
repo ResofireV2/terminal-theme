@@ -27,19 +27,25 @@
     }
 }
 
-// ── Sidebar + content widths — desktop only ───────────────────
-// Widen the sidebar from 190px to 260px, tighten the gap,
-// but only on the IndexPage (discussion list), not globally.
+// ── Container + sidebar widths — desktop only ────────────────
+// The container caps at 1100px (@screen-desktop-hd).
+// Widen it so the discussion list has genuine room to breathe.
+// Then widen the sidebar from 190px → 240px and tighten the gap.
 
 @media @desktop-up {
-    .IndexPage {
-        --sidebar-width: 260px;
-        --gap: 30px;
+    .container {
+        width: 1400px !important;
+        max-width: 96vw;
     }
 
-    // sideNav and its ul also have an explicit 190px — override both
+    .IndexPage {
+        --sidebar-width: 240px;
+        --gap: 24px;
+    }
+
+    // sideNav explicit width — overrides core's hardcoded 190px
     .IndexPage .sideNav,
     .IndexPage .sideNav > ul {
-        width: 260px;
+        width: 240px;
     }
 }
