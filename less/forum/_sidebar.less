@@ -113,3 +113,59 @@
         display: none;
     }
 }
+
+// ── Tablet: horizontal nav — tag tiles become plain nav items ──
+// At @tablet, sideNav becomes horizontal. The aurora-tag-grid sits
+// as a single li which breaks. We reset it to flow inline like the
+// other nav links.
+
+@media @tablet {
+    // Remove the grid layout — let tiles flow inline
+    .aurora-tag-grid {
+        display: inline;
+    }
+
+    .aurora-tag-tile {
+        // Match the inline-block li behaviour of the horizontal nav
+        display: inline-block;
+        vertical-align: top;
+        margin: 0 20px 0 0;
+
+        // Reset tile card styles
+        background: none;
+        border: none;
+        border-radius: 0;
+        padding: 0;
+        overflow: visible;
+
+        // Remove the coloured top bar pseudo
+        &::before { display: none; }
+
+        // Name styled like a nav link
+        .aurora-tag-tile-name {
+            font-family: 'DM Mono', monospace;
+            font-size: 14px;
+            color: @term-text-mid;
+            font-weight: 400;
+
+            &::before {
+                content: '$ ';
+                color: @term-text-dim;
+            }
+        }
+
+        // Hide the count — no room in horizontal strip
+        .aurora-tag-tile-count { display: none; }
+        .aurora-tag-tile-icon  { display: none; }
+
+        &:hover .aurora-tag-tile-name {
+            color: @term-text;
+            &::before { color: @term-green-dim; }
+        }
+
+        &.active .aurora-tag-tile-name {
+            color: @term-green;
+            &::before { color: @term-green-dim; }
+        }
+    }
+}
