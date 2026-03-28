@@ -27,6 +27,20 @@
         letter-spacing: .02em;
     }
 
+    // In the DiscussionHero, tags extension overrides .colored to use
+    // --contrast-color (white/light) as the background, which looks wrong
+    // on our dark theme. Force it back to a dark bg with coloured text.
+    .DiscussionHero .TagsLabel .TagLabel.colored,
+    .DiscussionHero .TagsLabel .TagLabel--colored {
+        background-color: @term-raised !important;
+        --tag-color: var(--tag-bg) !important;
+    }
+
+    .DiscussionHero .TagsLabel .TagLabel.colored .TagLabel-text,
+    .DiscussionHero .TagsLabel .TagLabel--colored .TagLabel-text {
+        color: var(--tag-bg) !important;
+    }
+
     .Alert {
         background: @term-raised;
         border: 1px solid @term-border;
