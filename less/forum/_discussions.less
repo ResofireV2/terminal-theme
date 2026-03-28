@@ -120,3 +120,54 @@
         &:hover { color: @term-text; }
     }
 }
+
+// ── Mobile discussion list — Phone only ───────────────────────
+
+@media @phone {
+    .DiscussionList {
+        // Full width, no margin
+        margin: 0;
+    }
+
+    .DiscussionListItem {
+        // Keep the left accent stripe
+        &::before {
+            width: 2px;
+        }
+    }
+
+    .DiscussionListItem-content {
+        padding: 10px 12px 10px 16px;
+    }
+
+    .DiscussionListItem-title {
+        font-family: 'DM Mono', monospace;
+        font-size: 13px;
+        color: @term-text;
+    }
+
+    .DiscussionListItem-info {
+        font-family: 'DM Mono', monospace;
+        font-size: 11px;
+        color: @term-text-mid;
+    }
+
+    // Reply count — absolute pill top-right on phone
+    .DiscussionListItem-count {
+        background: @term-raised !important;
+        color: @term-text-mid !important;
+        border: 1px solid @term-border;
+        border-radius: @border-radius !important;
+        font-family: 'DM Mono', monospace;
+        font-size: 11px !important;
+        padding: 2px 7px !important;
+
+        // Unread — green accent
+        .unread & {
+            background: @term-green-dimmer !important;
+            color: @term-green !important;
+            border-color: @term-green-dim !important;
+            font-weight: 500 !important;
+        }
+    }
+}

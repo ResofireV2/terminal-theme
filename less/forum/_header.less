@@ -101,3 +101,71 @@
         .Button-icon { color: @term-bg !important; font-size: 11px !important; }
     }
 }
+
+// ── Mobile top bar — Phone only ───────────────────────────────
+
+@media @phone {
+    // Top bar strip — 46px, dark surface, green bottom border
+    .App-navigation {
+        background: @term-surface !important;
+        border-bottom: 1px solid @term-border !important;
+        box-shadow: none !important;
+    }
+
+    // Left slot — hamburger / back button
+    // Style as >_ terminal prompt
+    .App-backControl > .Button {
+        color: @term-green !important;
+        font-family: 'DM Mono', monospace;
+
+        // Replace the icon with >_ via ::before, hide default icon
+        .Button-icon {
+            font-size: 0 !important; // hide FontAwesome icon visually
+            position: relative;
+
+            &::before {
+                content: '>_';
+                font-size: 16px;
+                font-family: 'DM Mono', monospace;
+                color: @term-green;
+                display: block;
+            }
+        }
+    }
+
+    // Centre slot — title / nav dropdown
+    // Prefix with "> " in green
+    .App-titleControl {
+        color: @term-green !important;
+        font-family: 'DM Mono', monospace;
+
+        > .Button,
+        &--text {
+            color: @term-green !important;
+            font-family: 'DM Mono', monospace;
+            font-size: 14px;
+            letter-spacing: .04em;
+        }
+
+        // The "> " prefix on the title text
+        &--text::before,
+        > .Button::before {
+            content: '> ';
+            color: @term-green-dim;
+            font-family: 'DM Mono', monospace;
+        }
+    }
+
+    // Right slot — Start a Discussion icon button
+    // Green icon, transparent background
+    .App-primaryControl > .Button {
+        color: @term-green !important;
+        background: transparent !important;
+        box-shadow: none !important;
+
+        .Button-icon {
+            font-size: 18px !important;
+            color: @term-green !important;
+        }
+    }
+}

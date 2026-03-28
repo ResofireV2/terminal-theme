@@ -126,3 +126,82 @@
         }
     }
 }
+
+// ── Mobile composer — Phone only ─────────────────────────────
+
+@media @phone {
+    .Composer {
+        background: @term-surface !important;
+        border-top: 1px solid @term-green !important;
+        box-shadow: none !important;
+
+        // Full-screen when open
+        &:not(.minimized) {
+            background: @term-surface !important;
+        }
+
+        // Minimized pill at bottom
+        &.minimized {
+            background: @term-raised !important;
+            border-top: 1px solid @term-green !important;
+            color: @term-text-mid;
+        }
+    }
+
+    // Title input
+    .ComposerBody-header {
+        border-bottom: 1px solid @term-border;
+
+        h3 {
+            &::before {
+                content: 'title: ';
+                font-size: 11px;
+                color: @term-green-dim;
+                font-family: 'DM Mono', monospace;
+            }
+
+            input {
+                color: @term-text;
+                font-family: 'DM Mono', monospace;
+                font-size: 14px;
+                background: transparent;
+
+                &::placeholder { color: @term-text-dim; }
+            }
+        }
+    }
+
+    // Editor body
+    .TextEditor .TextEditor-editor {
+        color: @term-text;
+        font-family: 'DM Mono', monospace;
+        font-size: 14px;
+        caret-color: @term-green;
+    }
+
+    // Toolbar
+    .TextEditor-controls {
+        border-top: 1px solid @term-border;
+
+        .Button {
+            background: transparent;
+            border: 1px solid @term-border;
+            color: @term-text-dim;
+            font-family: 'DM Mono', monospace;
+            font-size: 11px;
+            border-radius: @border-radius;
+            box-shadow: none;
+
+            &:hover { color: @term-text; border-color: @term-green-dim; }
+        }
+
+        .App-primaryControl .Button--primary {
+            background: @term-green !important;
+            color: @term-bg !important;
+            border-color: @term-green !important;
+            font-family: 'DM Mono', monospace !important;
+            font-weight: 500 !important;
+            box-shadow: none !important;
+        }
+    }
+}

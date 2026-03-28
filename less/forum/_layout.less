@@ -49,3 +49,97 @@
         width: 240px;
     }
 }
+
+// ── Mobile drawer — Phone only ────────────────────────────────
+
+@media @phone {
+    // Drawer panel itself
+    .App-drawer {
+        background: @term-surface !important;
+        border-right: 1px solid @term-border;
+        box-shadow: none !important;
+    }
+
+    // Forum title inside the drawer
+    .App-drawer .Header-title,
+    .App-drawer .Header-title a {
+        font-family: 'DM Mono', monospace;
+        font-size: 15px;
+        color: @term-green !important;
+        text-align: center;
+        letter-spacing: .06em;
+
+        &::before { content: '> '; color: @term-green-dim; }
+    }
+
+    // Header controls inside drawer — search, notifications, session
+    // rendered as full-width vertical stack
+    .App-drawer .Header-controls {
+        > li {
+            padding: 0 12px;
+        }
+
+        .Button {
+            font-family: 'DM Mono', monospace;
+            font-size: 13px;
+            color: @term-text-mid;
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            justify-content: flex-start;
+
+            &:hover {
+                color: @term-text;
+                background: transparent;
+            }
+
+            .Button-icon { color: inherit; }
+            .Button-label { color: inherit; }
+        }
+
+        // Search input full-width
+        .FormControl {
+            background: @term-raised;
+            border: 1px solid @term-border;
+            color: @term-text;
+            font-family: 'DM Mono', monospace;
+            font-size: 13px;
+            border-radius: @border-radius;
+
+            &::placeholder { color: @term-text-dim; }
+            &:focus {
+                border-color: @term-green-dim;
+                box-shadow: none;
+            }
+        }
+
+        // Session dropdown full-width
+        .SessionDropdown .Button--flat {
+            color: @term-green;
+            font-family: 'DM Mono', monospace;
+            font-size: 13px;
+            justify-content: flex-start;
+            background: transparent;
+            box-shadow: none;
+
+            .Avatar { border-radius: @border-radius; }
+        }
+
+        // Notifications and flags
+        .NotificationsDropdown .Button--flat,
+        .FlagsDropdown .Button--flat {
+            color: @term-text-mid;
+            font-family: 'DM Mono', monospace;
+            background: transparent;
+            box-shadow: none;
+            justify-content: flex-start;
+
+            &:hover { color: @term-text; }
+        }
+    }
+
+    // Drawer backdrop
+    .drawer-backdrop {
+        background: rgba(0,0,0,.8);
+    }
+}
