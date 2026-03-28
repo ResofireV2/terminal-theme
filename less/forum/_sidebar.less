@@ -115,37 +115,52 @@
 }
 
 // ── Tablet: horizontal nav ───────────────────────────────────
-// At @tablet, sideNav goes horizontal. Two things to fix:
-// 1. Restore native icon+label layout on core nav links (undo our desktop overrides)
-// 2. Make tag tiles look identical to core nav links, coloured by tag colour
+// Each nav item: icon stacked above ">" separator above label text.
+// Tags match exactly, coloured by their tag colour.
 
 @media @tablet {
-    // ── Core nav links: restore native appearance ──
-    // Undo our desktop-only overrides (hidden icon, $ prefix, large padding)
+    // Core nav links: flex-column so icon sits above text.
+    // Restore icon. Use > as separator between icon and label.
     .sideNav .Dropdown--select .Dropdown-menu > li > a {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
         padding: 0;
+        gap: 2px;
+        text-align: center;
 
-        // Show the icon again
-        .Button-icon { display: inline-block; }
+        // Show the icon again (we hid it on desktop)
+        .Button-icon {
+            display: block;
+            font-size: 16px;
+        }
 
-        // Remove our $ prefix pseudo
+        // > separator between icon and label text
+        .Button-label::before {
+            content: '>';
+            display: block;
+            font-size: 10px;
+            color: @term-text-dim;
+            line-height: 1;
+            margin-bottom: 1px;
+            font-family: 'DM Mono', monospace;
+        }
+
+        // Remove our desktop $ prefix
         &::before { content: none; }
     }
 
-    // ── Tag tiles: match core nav link appearance exactly ──
-    // Unwrap the grid — transparent inline passthrough
-    .term-tag-grid {
-        display: inline;
-    }
+    // Tag tiles: same column layout, coloured by tag colour
+    .term-tag-grid { display: inline; }
 
-    // Each tile matches a core LinkButton nav item
     .term-tag-tile {
         display: inline-flex;
-        align-items: flex-start;
-        flex-direction: row;
+        flex-direction: column;
+        align-items: center;
         vertical-align: top;
         margin: 0 20px 0 0;
-        gap: 8px;
+        gap: 2px;
+        text-align: center;
 
         // Reset tile card styles
         background: none;
@@ -158,21 +173,32 @@
         // Remove coloured top bar
         &::before { display: none; }
 
-        // Icon — same as .Button-icon, coloured by tag colour
+        // Icon on top, coloured by tag colour
         .term-tag-tile-icon {
-            display: inline-block;
+            display: block;
             position: static;
-            font-size: 15px;
+            font-size: 16px;
             opacity: 1;
             color: var(--tile-color, @term-text-mid);
             width: auto;
             height: auto;
             top: auto;
             right: auto;
-            line-height: inherit;
+            line-height: 1;
         }
 
-        // Name — same as .Button-label, coloured by tag colour, no $ prefix
+        // > separator
+        .term-tag-tile-name::before {
+            content: '>';
+            display: block;
+            font-size: 10px;
+            color: @term-text-dim;
+            line-height: 1;
+            margin-bottom: 1px;
+            font-family: 'DM Mono', monospace;
+        }
+
+        // Tag name coloured by tag colour
         .term-tag-tile-name {
             font-family: 'DM Mono', monospace;
             font-size: 14px;
@@ -180,15 +206,12 @@
             color: var(--tile-color, @term-text-mid);
             margin-top: 0;
             display: block;
-
-            &::before { content: none; }
         }
 
-        // No count in horizontal strip
         .term-tag-tile-count { display: none; }
 
         &:hover {
-            .term-tag-tile-name { opacity: .75; }
+            .term-tag-tile-name,
             .term-tag-tile-icon { opacity: .75; }
         }
 
@@ -197,3 +220,4 @@
         }
     }
 }
+
