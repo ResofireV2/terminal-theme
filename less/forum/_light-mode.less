@@ -23,7 +23,16 @@
     // ── Global background ─────────────────────────────────────
     body,
     .App,
-    .App-content { background: #fdf6e3 !important; }
+    .App-content,
+    .Page,
+    .Page-container,
+    .Page-main,
+    .Page-content,
+    .IndexPage,
+    .DiscussionPage,
+    .UserPage { background: #fdf6e3 !important; }
+
+    .App-drawer { background: #f0ead6 !important; }
 
     // ── App header ────────────────────────────────────────────
     .App-header {
@@ -167,7 +176,7 @@
         }
     }
 
-    // Reply count pill on phone
+    // Reply count pill (phone) and stats badge (desktop)
     .DiscussionListItem-count {
         background: #efe9d5 !important;
         color: #939f91 !important;
@@ -177,7 +186,16 @@
             background: #dde8b8 !important;
             color: #5a6e10 !important;
             border-color: #c0d068 !important;
+            font-weight: 500 !important;
         }
+    }
+
+    // Unread reply count — boost specificity to beat dark theme !important
+    .DiscussionListItem-content.unread .DiscussionListItem-count {
+        background: #dde8b8 !important;
+        color: #5a6e10 !important;
+        border-color: #c0d068 !important;
+        font-weight: 500 !important;
     }
 
     // Toolbar
