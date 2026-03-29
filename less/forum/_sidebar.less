@@ -151,6 +151,39 @@
 // ::before = col 1 row 1/-1, .Button-icon = col 2 row 1, .Button-label = col 2 row 2
 
 @media @tablet {
+    // Start a Discussion button — force terminal colors (not forum primary)
+    .App-primaryControl .Button--primary,
+    .IndexPage-newDiscussion {
+        background: @term-green !important;
+        border: none !important;
+        border-radius: @border-radius !important;
+        color: @term-bg !important;
+        font-family: 'DM Mono', monospace !important;
+        font-size: 13px !important;
+        font-weight: 500 !important;
+        box-shadow: none !important;
+
+        &:hover {
+            background: mix(white, @term-green, 15%) !important;
+            box-shadow: none !important;
+        }
+
+        .Button-icon { color: @term-bg !important; }
+        .Button-label { color: @term-bg !important; }
+    }
+
+    // Nav items — force terminal colors (not forum primary)
+    .sideNav .Dropdown--select .Dropdown-menu > li > a {
+        color: @term-text-mid !important;
+        &::before { color: @term-text-dim !important; }
+        .Button-icon { color: @term-text-dim !important; }
+    }
+
+    .sideNav .Dropdown--select .Dropdown-menu > li.active > a {
+        color: @term-green !important;
+        &::before { color: @term-green-dim !important; }
+        .Button-icon { color: @term-green-dim !important; }
+    }
     // Core nav links — grid layout for > | stacked icon+label
     .sideNav .Dropdown--select .Dropdown-menu > li > a {
         display: inline-grid;
@@ -273,11 +306,31 @@
 // Our tag tiles sit in the sidebar and need phone-specific layout.
 
 @media @phone {
-    // Active nav item — dark text on dim green bg (readable)
+    // Active nav item — full-width highlight
+    .sideNav .Dropdown--select .Dropdown-menu {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .sideNav .Dropdown--select .Dropdown-menu > li {
+        display: block;
+        width: 100%;
+    }
+
+    .sideNav .Dropdown--select .Dropdown-menu > li > a {
+        display: flex !important;
+        width: 100% !important;
+        padding: 10px 16px !important;
+        border-radius: 0 !important;
+        box-sizing: border-box;
+        margin: 0 !important;
+    }
+
     .sideNav .Dropdown--select .Dropdown-menu > li.active > a {
         background: @term-green-dimmer !important;
         color: @term-green !important;
         font-weight: 500;
+        width: 100% !important;
     }
 
     // Tag tiles on phone — vertical list matching nav link style
@@ -298,6 +351,8 @@
         overflow: visible;
         min-height: 0;
         text-decoration: none;
+        width: 100%;
+        box-sizing: border-box;
 
         &::before { display: none; }
 

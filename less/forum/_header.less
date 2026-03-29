@@ -1,6 +1,12 @@
 // ── Header — Desktop only ─────────────────────────────────────
 
 @media @tablet-up {
+    // Hide default nav back/pin buttons — they show as >> and cover the logo
+    #header-navigation,
+    .Header-navigation,
+    .Navigation-back,
+    .Navigation-pin { display: none !important; }
+
     .App-header {
         background: @term-surface !important;
         border-bottom: 1px solid @term-border !important;
