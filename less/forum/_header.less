@@ -14,8 +14,7 @@
         padding: 8px 16px;
     }
 
-    .Header-title,
-    .Header-title a {
+    .Header-title {
         font-family: 'DM Mono', monospace;
         font-size: 14px;
         font-weight: 500;
@@ -23,7 +22,15 @@
         letter-spacing: .06em;
         text-decoration: none;
 
+        // Only add "> " prefix when showing text title (no logo uploaded)
+        // When logo is present, .Header-title contains an <a><img></a>
+        // so we suppress ::before to avoid double "> >"
         &::before { content: '> '; color: @term-green-dim; }
+
+        // Suppress ::before when logo link is present inside
+        a { text-decoration: none; }
+        a::before { display: none !important; content: none !important; }
+
         &:hover { color: @term-green !important; text-decoration: none; }
     }
 

@@ -336,7 +336,8 @@
     // Tag tiles on phone — vertical list matching nav link style
     .term-tag-grid {
         display: block;
-        padding: 4px 0;
+        padding: 0;
+        margin: 0;
     }
 
     .term-tag-tile {
@@ -354,7 +355,8 @@
         width: 100%;
         box-sizing: border-box;
 
-        &::before { display: none; }
+        &::before { display: none !important; }
+        margin: 0 !important;
 
         .term-tag-tile-icon {
             display: inline-block;
