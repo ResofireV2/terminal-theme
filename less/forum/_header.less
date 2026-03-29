@@ -22,14 +22,22 @@
         letter-spacing: .06em;
         text-decoration: none;
 
-        // Only add "> " prefix when showing text title (no logo uploaded)
-        // When logo is present, .Header-title contains an <a><img></a>
-        // so we suppress ::before to avoid double "> >"
-        &::before { content: '> '; color: @term-green-dim; }
+        // Only show "> " prefix when .Header-title contains text (no logo).
+        // When a logo is uploaded, .Header-title wraps an <a><img></a>.
+        // :has(img) suppresses the prefix so the logo renders cleanly.
+        &::before {
+            content: '> ';
+            color: @term-green-dim;
+        }
 
-        // Suppress ::before when logo link is present inside
-        a { text-decoration: none; }
-        a::before { display: none !important; content: none !important; }
+        &:has(img)::before,
+        &:has(.Header-logo)::before {
+            display: none !important;
+            content: none !important;
+        }
+
+        a, a:hover { text-decoration: none; }
+        a::before, a::after { display: none !important; content: none !important; }
 
         &:hover { color: @term-green !important; text-decoration: none; }
     }
